@@ -83,7 +83,7 @@ defmodule Xlsxir.ParseWorksheet do
 
   defp format_cell_value(list) do
     case list do
-      [   _,   _, nil]  -> nil                                                                 # Cell with no value attribute
+      [   _,   _, nil]  -> ""                                                                 # Cell with no value attribute
       [   _,   _,  ""]  -> ""                                                                 # Empty cell with assigned attribute
       [ 'e',  nil,  e]  -> List.to_string(e)                                                   # Type error
       [ 's',    _,  i]  -> SharedString.get_at(List.to_integer(i))                             # Type string

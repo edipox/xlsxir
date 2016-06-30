@@ -54,11 +54,8 @@ defmodule Xlsxir.ParseWorksheet do
   def sax_event_handler({:endElement,_,'c',_}, %Xlsxir.ParseWorksheet{row: row} = state) do
     cell_value = format_cell_value([state.data_type, state.num_style, state.value])
 
-    if cell_value do
-      %{state | row: Enum.into(row, [[to_string(state.cell_ref), cell_value]]), cell_ref: "", data_type: "", num_style: "", value: ""}  
-    else
-      %{state | row: row, cell_ref: "", data_type: "", num_style: "", value: ""} 
-    end
+    
+    %{state | row: Enum.into(row, [[to_string(state.cell_ref), cell_value]]), cell_ref: "", data_type: "", num_style: "", value: ""}  
   end
 
   def sax_event_handler({:endElement,_,'row',_}, state) do
